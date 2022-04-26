@@ -365,10 +365,13 @@ class AbilityDetailPageState extends State<AbilityDetailPage> {
               ),
             ),
             onTap: () async {
-              String url = 'mailto: ${ability!.email}';
-              await canLaunch(url)
-                  ? await launch(url)
-                  : showToast('无法启动 $url', context);
+              final Uri uri = Uri(
+                scheme: 'mailto',
+                path: '${ability!.email}',
+              );
+              await canLaunchUrl(uri)
+                  ? await launchUrl(uri)
+                  : showToast('无法启动 $uri', context);
             },
           ),
       ],
@@ -388,10 +391,13 @@ class AbilityDetailPageState extends State<AbilityDetailPage> {
               ),
             ),
             onTap: () async {
-              String url = 'tel: ${ability!.tel}';
-              await canLaunch(url)
-                  ? await launch(url)
-                  : showToast('无法启动 $url', context);
+              final Uri uri = Uri(
+                scheme: 'tel',
+                path: '${ability!.tel}',
+              );
+              await canLaunchUrl(uri)
+                  ? await launchUrl(uri)
+                  : showToast('无法启动 $uri', context);
             },
           )
       ],
@@ -409,17 +415,20 @@ class AbilityDetailPageState extends State<AbilityDetailPage> {
         ),
       ),
       onTap: () async {
-        String url = 'geo:${ability!.geo}';
-        await canLaunch(url)
-            ? await launch(url)
-            : showToast('无法启动 $url', context);
+        final Uri uri = Uri(
+          scheme: 'geo',
+          path: '${ability!.geo}',
+        );
+        await canLaunchUrl(uri)
+            ? await launchUrl(uri)
+            : showToast('无法启动 $uri', context);
       },
     );
   }
 
   Widget _respond(Respond respond) {
     DateFormat formatter = DateFormat('yyyy-MM-dd HH:mm:ss');
-    
+
     String updated = '';
     if (Pref.containsKey('respondUpdate' '_' + respond.id.toString())) {
       updated = Pref.getString('respondUpdate' '_' + respond.id.toString())!;

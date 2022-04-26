@@ -1260,7 +1260,7 @@ class RespondDetailPageState extends State<RespondDetailPage> {
                 },
               ),
             ),
-           if (element.uid == user!.id &&
+          if (element.uid == user!.id &&
               element.freeze! > 0 &&
               (0.0).compareTo(element.pay!) == 0 &&
               ((paying == 1 && respond!.abilityuid == user!.id) ||
@@ -1296,7 +1296,8 @@ class RespondDetailPageState extends State<RespondDetailPage> {
               element.freeze! > 0 &&
               element.unfreeze! > 0 &&
               element.income! > 0 &&
-              (0.0).compareTo(element.cash!) == 0)  TableCell(
+              (0.0).compareTo(element.cash!) == 0)
+            TableCell(
               child: ElevatedButton(
                 child: const Text(
                   '提现',
@@ -1499,7 +1500,7 @@ class RespondDetailPageState extends State<RespondDetailPage> {
                 },
               ),
             ),
-           if (element.uid == user!.id &&
+          if (element.uid == user!.id &&
               element.freeze! > 0 &&
               (0.0).compareTo(element.pay!) == 0 &&
               ((paying == 1 && respond!.abilityuid == user!.id) ||
@@ -1535,7 +1536,8 @@ class RespondDetailPageState extends State<RespondDetailPage> {
               element.freeze! > 0 &&
               element.unfreeze! > 0 &&
               element.income! > 0 &&
-              (0.0).compareTo(element.cash!) == 0)  TableCell(
+              (0.0).compareTo(element.cash!) == 0)
+            TableCell(
               child: ElevatedButton(
                 child: const Text(
                   '提现',
@@ -2132,11 +2134,14 @@ class RespondDetailPageState extends State<RespondDetailPage> {
                 builder: (BuildContext context) =>
                     confirm(context, '确定要提交纠纷证据吗？将向系统管理员发送一份电子邮件(可以有附件)。'),
               ).then<ConfirmDialogAction?>((ConfirmDialogAction? value) async {
-                String url =
-                    'mailto:support@a2money.com?subject=纠纷证据，响应编号是${respond!.id}';
-                await canLaunch(url)
-                    ? await launch(url)
-                    : showToast('无法启动 $url', context);
+                final Uri uri = Uri(
+                  scheme: 'mailto',
+                  path: 'support@a2money.com',
+                  query: 'subject=纠纷证据，响应编号是${respond!.id}',
+                );
+                await canLaunchUrl(uri)
+                    ? await launchUrl(uri)
+                    : showToast('无法启动 $uri', context);
 
                 return;
               });

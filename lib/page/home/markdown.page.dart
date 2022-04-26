@@ -48,9 +48,10 @@ class MarkdownPageState extends State<MarkdownPage> {
               data: snapshot.data!,
               onTapLink: (text, url, title) async {
                 if (url!.startsWith('https://') || url.startsWith('http://')) {
-                  await canLaunch(url)
-                      ? await launch(url)
-                      : showToast('无法启动 $url', context);
+                  final Uri uri = Uri.parse(url);
+                  await canLaunchUrl(uri)
+                      ? await launchUrl(uri)
+                      : showToast('无法启动 $uri', context);
                 } else if (url.endsWith('.md')) {
                   Navigator.push(
                     context,

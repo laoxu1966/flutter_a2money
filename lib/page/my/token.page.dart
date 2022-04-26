@@ -875,7 +875,7 @@ class TokenPageState extends State<TokenPage> {
   Widget build(BuildContext context) {
     var thisuser = context.watch<UserService>().user;
     if (thisuser == null) {
-      return anonymous(context, false);
+      return anonymous(context, true);
     }
 
     if (user != thisuser) {

@@ -787,9 +787,9 @@ class CreateAbilityPageState extends State<CreateAbilityPage> {
     if (user == null) {
       return anonymous(context, true);
     } else if (user!.role! == -1) {
-      return blocked(context, true);
-    } else if ((user!.tel ?? '').isEmpty || (user!.email ?? '').isEmpty) {
-      return verificationTel(context, true);
+      return blocked(context);
+    } else if ((user!.tel ?? '').isEmpty) {
+      return verificationTel(context);
     }
 
     return WillPopScope(

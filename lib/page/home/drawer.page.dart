@@ -10,6 +10,8 @@ import '../../common/constant.dart';
 import '../../service/dio.service.dart';
 import '../../service/theme.service.dart';
 
+import '../lunar/birthday.page.dart';
+
 import 'markdown.page.dart';
 
 class DrawerPage extends StatefulWidget {
@@ -161,6 +163,20 @@ class DrawerPageState extends State<DrawerPage> {
               );
             },
           ),
+          ListTile(
+            leading: const Icon(Icons.perm_contact_calendar_outlined),
+            title: const Text(
+              '新功能测试',
+            ),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const BirthDayPage(),
+                ),
+              );
+            },
+          ),
           const Divider(),
           ListTile(
             leading: const Icon(Icons.update),
@@ -182,10 +198,11 @@ class DrawerPageState extends State<DrawerPage> {
                       ).then<ConfirmDialogAction?>(
                           (ConfirmDialogAction? value) async {
                         if (value == ConfirmDialogAction.OK) {
-                          String url = 'https://www.a2money.com:3000/download';
-                          await canLaunch(url)
-                              ? await launch(url)
-                              : showToast('无法启动 $url', context);
+                          final Uri uri = Uri.parse(
+                              'https://www.a2money.com:3000/download');
+                          await canLaunchUrl(uri)
+                              ? await launchUrl(uri)
+                              : showToast('无法启动 $uri', context);
                         }
                         return;
                       });

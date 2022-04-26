@@ -149,13 +149,11 @@ anonymous(context, bar) {
   );
 }
 
-blocked(context, bar) {
+blocked(context) {
   return Scaffold(
-    appBar: bar
-        ? AppBar(
-            title: const Text('你的账号被暂时封禁'),
-          )
-        : null,
+    appBar: AppBar(
+      title: const Text('你的账号被暂时封禁'),
+    ),
     body: Center(
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -180,13 +178,11 @@ blocked(context, bar) {
   );
 }
 
-verificationEmail(context, bar) {
+verificationEmail(context) {
   return Scaffold(
-    appBar: bar
-        ? AppBar(
-            title: const Text('你还没有验证电子邮件账号'),
-          )
-        : null,
+    appBar: AppBar(
+      title: const Text('你还没有验证电子邮件账号'),
+    ),
     body: Center(
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -217,13 +213,11 @@ verificationEmail(context, bar) {
   );
 }
 
-verificationTel(context, bar) {
+verificationTel(context) {
   return Scaffold(
-    appBar: bar
-        ? AppBar(
-            title: const Text('你还没有验证手机号码'),
-          )
-        : null,
+    appBar: AppBar(
+      title: const Text('你还没有验证手机号码'),
+    ),
     body: Center(
       child: Column(
         mainAxisSize: MainAxisSize.min,

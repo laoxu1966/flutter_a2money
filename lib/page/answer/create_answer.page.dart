@@ -250,9 +250,9 @@ class CreateAnswerPageState extends State<CreateAnswerPage> {
     if (user == null) {
       return anonymous(context, true);
     } else if (user!.role! == -1) {
-      return blocked(context, true);
+      return blocked(context);
     } else if ((user!.email ?? '').isEmpty) {
-      return verificationEmail(context, true);
+      return verificationEmail(context);
     }
 
     return WillPopScope(

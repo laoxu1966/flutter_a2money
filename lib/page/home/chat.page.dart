@@ -322,9 +322,9 @@ class ChatPageState extends State<ChatPage> with TickerProviderStateMixin {
     if (user == null) {
       return anonymous(context, true);
     } else if (user!.role! == -1) {
-      return blocked(context, true);
-    } else if ((user!.tel ?? '').isEmpty || (user!.email ?? '').isEmpty) {
-      return verificationEmail(context, true);
+      return blocked(context);
+    } else if ((user!.email ?? '').isEmpty) {
+      return verificationEmail(context);
     }
 
     List<Chat> chats = context.watch<ChatService>().chats;

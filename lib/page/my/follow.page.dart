@@ -210,7 +210,7 @@ class FollowPageState extends State<FollowPage> {
   Widget build(BuildContext context) {
     user = context.watch<UserService>().user;
     if (user == null) {
-      return anonymous(context, false);
+      return anonymous(context, true);
     }
 
     return Scaffold(
